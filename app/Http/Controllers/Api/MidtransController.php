@@ -8,9 +8,11 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
+use Dedoc\Scramble\Attributes\ExcludeRouteFromDocs;
 
 class MidtransController extends Controller
 {
+    #[ExcludeRouteFromDocs]
     public function midtrans(Request $request)
     {
         $statusCode = $request->status_code;
