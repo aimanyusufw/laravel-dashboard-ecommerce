@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Validator;
 class AuthController extends Controller
 {
 
-    // register user
+    /**
+     * User Register
+     */
     public function registerUser(UserRegisterRequest $request)
     {
         $data = $request->validated();
@@ -49,7 +51,9 @@ class AuthController extends Controller
         return response(['message' => 'Register user successfully', 'data' => new UserResource($user)], 201);
     }
 
-    // login user
+    /**
+     * User Login
+     */
     public function loginUser(UserLoginRequest $request)
     {
         $data = $request->validated();
@@ -69,7 +73,9 @@ class AuthController extends Controller
         return response(['message' => 'Loggin successfully', 'data' => new UserResource($user)], 200);
     }
 
-    // Log out user
+    /**
+     * User Logout
+     */
     public function logoutUser(Request $request)
     {
         $request->user()->tokens()->delete();
@@ -77,7 +83,9 @@ class AuthController extends Controller
     }
 
 
-    // delete user
+    /**
+     * User Delete
+     */
     public function deleteUser(Request $request)
     {
         $user = $request->user();
