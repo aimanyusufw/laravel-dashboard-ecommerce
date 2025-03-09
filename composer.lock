@@ -765,16 +765,16 @@
         },
         {
             "name": "dedoc/scramble",
-            "version": "v0.12.10",
+            "version": "v0.12.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dedoc/scramble.git",
-                "reference": "996dc8db3e09e7f893d4883dfdfa8f2839fee531"
+                "reference": "83aacb9d81ed147ac086f42967de288a3415c5d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dedoc/scramble/zipball/996dc8db3e09e7f893d4883dfdfa8f2839fee531",
-                "reference": "996dc8db3e09e7f893d4883dfdfa8f2839fee531",
+                "url": "https://api.github.com/repos/dedoc/scramble/zipball/83aacb9d81ed147ac086f42967de288a3415c5d6",
+                "reference": "83aacb9d81ed147ac086f42967de288a3415c5d6",
                 "shasum": ""
             },
             "require": {
@@ -829,7 +829,7 @@
             ],
             "support": {
                 "issues": "https://github.com/dedoc/scramble/issues",
-                "source": "https://github.com/dedoc/scramble/tree/v0.12.10"
+                "source": "https://github.com/dedoc/scramble/tree/v0.12.11"
             },
             "funding": [
                 {
@@ -837,7 +837,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-24T20:12:29+00:00"
+            "time": "2025-03-09T10:32:56+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -2547,16 +2547,16 @@
         },
         {
             "name": "kirschbaum-development/eloquent-power-joins",
-            "version": "4.2.1",
+            "version": "4.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kirschbaum-development/eloquent-power-joins.git",
-                "reference": "84a24784d9abde8bafb1998a0841a6bc10fa6f8e"
+                "reference": "a307fab78c291526fba754e6ac8a86f7bd58d45d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kirschbaum-development/eloquent-power-joins/zipball/84a24784d9abde8bafb1998a0841a6bc10fa6f8e",
-                "reference": "84a24784d9abde8bafb1998a0841a6bc10fa6f8e",
+                "url": "https://api.github.com/repos/kirschbaum-development/eloquent-power-joins/zipball/a307fab78c291526fba754e6ac8a86f7bd58d45d",
+                "reference": "a307fab78c291526fba754e6ac8a86f7bd58d45d",
                 "shasum": ""
             },
             "require": {
@@ -2604,9 +2604,9 @@
             ],
             "support": {
                 "issues": "https://github.com/kirschbaum-development/eloquent-power-joins/issues",
-                "source": "https://github.com/kirschbaum-development/eloquent-power-joins/tree/4.2.1"
+                "source": "https://github.com/kirschbaum-development/eloquent-power-joins/tree/4.2.2"
             },
-            "time": "2025-03-05T10:11:33+00:00"
+            "time": "2025-03-08T01:26:00+00:00"
         },
         {
             "name": "laravel/framework",
