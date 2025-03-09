@@ -18,13 +18,13 @@ use Midtrans\Snap;
 // Set your Merchant Server Key
 Config::$serverKey = env('MIDTRANSE_SERVER_KEY');
 // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-Config::$isProduction = false;
+Config::$isProduction = env('MIDTRANSE_PROD_STATUS');
 // Set sanitization on (default)
 Config::$isSanitized = true;
 // Set 3DS transaction for credit card to true
 Config::$is3ds = true;
 
-Config::$overrideNotifUrl = env('MIDTRANSE_NOTIF_URL');
+Config::$overrideNotifUrl = env('APP_URL') + '/' + env('MIDTRANSE_NOTIF_URL');
 
 class CheckoutController extends Controller
 {
