@@ -24,7 +24,7 @@ Config::$isSanitized = true;
 // Set 3DS transaction for credit card to true
 Config::$is3ds = true;
 
-Config::$overrideNotifUrl = env('APP_URL') + '/' + env('MIDTRANSE_NOTIF_URL');
+Config::$overrideNotifUrl = env('MIDTRANSE_NOTIF_URL');
 
 class CheckoutController extends Controller
 {
