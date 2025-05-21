@@ -5,15 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegisterRequest;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\AuthResource;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -26,13 +23,7 @@ class AuthController extends Controller
         $data = $request->validated();
 
         if (User::where('email', $data['email'])->count() == 1) {
-            throw new HttpResponseException(response([
-                'errors' => [
-                    'email' => [
-                        'Email already registred'
-                    ]
-                ]
-            ], 400));
+            return responseModel(400, "Invalid credentials", ["errors" => ['email' => ['Email already registred']]]);
         }
 
         $user = new User($data);
@@ -41,14 +32,12 @@ class AuthController extends Controller
         if ($role) {
             $user->assignRole($role->name); // Menggunakan nama role sebagai string
         } else {
-            return response()->json([
-                'error' => 'Role customer not found.'
-            ], 400);
+            return responseModel(400, 'Invalid credentials', ['error' => 'Role customer not found.']);
         }
         $user->save();
         $user['token'] = $user->createToken('auth_token')->plainTextToken;
 
-        return response(['message' => 'Register user successfully', 'data' => new UserResource($user)], 201);
+        return responseModel(201, 'Invalid credentials', new AuthResource($user));
     }
 
     /**
@@ -59,18 +48,16 @@ class AuthController extends Controller
         $data = $request->validated();
 
         if (!Auth::attempt($data)) {
-            throw new HttpResponseException(response([
-                'errors' => [
-                    'email' => 'Invalid credentials',
-                    'password' => 'Invalid credentials'
-                ]
-            ], 400));
+            return responseModel(400, "Invalid credentials", ['errors' => [
+                'email' => ['Invalid credentials'],
+                'password' => ['Invalid credentials']
+            ]]);
         }
 
         $user = User::where('email', $request->email)->firstOrFail();
         $user['token'] = $user->createToken('auth_token')->plainTextToken;
 
-        return response(['message' => 'Loggin successfully', 'data' => new UserResource($user)], 200);
+        return responseModel(200, 'Loggin successfully', new AuthResource($user));
     }
 
     /**
@@ -79,7 +66,7 @@ class AuthController extends Controller
     public function logoutUser(Request $request)
     {
         $request->user()->tokens()->delete();
-        return response(['message' => 'Logout successfully'], 200);
+        return responseModel(200, 'Logout successfully', new AuthResource($request->user()));
     }
 
 
@@ -89,9 +76,8 @@ class AuthController extends Controller
     public function deleteUser(Request $request)
     {
         $user = $request->user();
-
         $user->delete();
 
-        return response(['message' => 'User deleted successfully'], 200);
+        return responseModel(200, 'User deleted successfully', new AuthResource($user));
     }
 }
