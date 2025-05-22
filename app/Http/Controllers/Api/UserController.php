@@ -17,7 +17,7 @@ class UserController extends Controller
     // get user
     public function getUser(Request $request)
     {
-        return response(['message' => 'Get user successfully', 'data' => new UserResource($request->user()->load('userDetail'))], 200);
+        return responseModel(200, 'Get user successfully', new UserResource($request->user()->load('userDetail')));
     }
 
     public function updateOrCreateUserDetail(Request $request)
@@ -40,10 +40,7 @@ class UserController extends Controller
 
         $user->userDetail()->updateOrCreate([], $data);
 
-        return response()->json([
-            'message' => 'Update user detail successfully',
-            'data' => new UserResource($user->load('userDetail'))
-        ]);
+        return responseModel(200, 'Update user successfully', new UserResource($user->load('userDetail')));
     }
 
     public function storeImage($user, $image)
@@ -52,8 +49,7 @@ class UserController extends Controller
         if ($userDetail && $userDetail->profile_picture && Storage::disk('public')->exists($userDetail->profile_picture)) {
             Storage::disk('public')->delete($userDetail->profile_picture);
         }
-        $file_name = Str::slug(pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME))
-            . '-' . time() . '.' . $image->getClientOriginalExtension();
+        $file_name = 'aimanyusuf-image-' . date('Y-m-d') . '-at-' . time() . '.' . $image->getClientOriginalExtension();
         $canvas = Image::canvas(500, 500);
         $resizedImage = Image::make($image)->resize(null, 500, function ($constraint) {
             $constraint->aspectRatio();

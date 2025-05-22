@@ -23,14 +23,14 @@ class UserResource extends JsonResource
             'detail' => $this->userDetail !== null ? [
                 'profile_picture' => $this->userDetail->profile_picture ? asset(Storage::url($this->userDetail->profile_picture)) : null,
                 'billing_name' => $this->userDetail->billing_name,
-                'phone' => $this->userDetail->billing_phone,
-                'email' => $this->userDetail->billing_email,
-                'address' => $this->userDetail->billing_address,
-                'province' => [
+                'billing_phone' => $this->userDetail->billing_phone,
+                'billing_email' => $this->userDetail->billing_email,
+                'billing_address' => $this->userDetail->billing_address,
+                'billing_province' => [
                     'id' => $this->userDetail->billing_province_id,
                     'name' => $this->userDetail->billing_province_name
                 ],
-                'city' => [
+                'billing_city' => [
                     'id' => $this->userDetail->billing_city_id,
                     'name' => $this->userDetail->billing_city_name
                 ],
